@@ -4,7 +4,7 @@ import './index.css';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 
-// import "lib-flexible"
+import "lib-flexible"
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -47,7 +47,7 @@ const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
 
-// const px2rem = require('postcss-px2rem-exclude');
+const px2rem = require('postcss-px2rem-exclude');
 
 
 // This is the production and development configuration.
@@ -111,7 +111,7 @@ module.exports = function(webpackEnv) {
             //   minPixelValue:2,
             // }),
             
-            // px2rem({remUnit:75,exclude: /node_modules/i}),
+            px2rem({remUnit:75,exclude: /node_modules/i}),
 
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
