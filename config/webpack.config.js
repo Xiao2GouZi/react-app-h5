@@ -47,7 +47,7 @@ const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
 
-
+// const px2rem = require('postcss-px2rem-exclude');
 
 
 // This is the production and development configuration.
@@ -104,6 +104,15 @@ module.exports = function(webpackEnv) {
               },
               stage: 3,
             }),
+
+            // require('postcss-pxtorem')({
+            //   rootValue: 100,
+            //   propWhiteList: [],
+            //   minPixelValue:2,
+            // }),
+            
+            // px2rem({remUnit:75,exclude: /node_modules/i}),
+
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
@@ -114,12 +123,17 @@ module.exports = function(webpackEnv) {
       },
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
+      const loader = {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
-      });
+      }
+      if (preProcessor === "less-loader") {
+        loader.options.modifyVars = theme;
+        loader.options.javascriptEnabled = true
+      }
+      loaders.push(loader);
     }
     return loaders;
   };
@@ -279,6 +293,11 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@kits': path.resolve(__dirname, '../src/kits'),
+        '@config': path.resolve(__dirname, '../src/config'),
+        '@assets': path.resolve(__dirname, '../src/assets'),
+        '@components': path.resolve(__dirname, '../src/components'),
+        '@commons': path.resolve(__dirname, '../src/commons'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -492,27 +511,27 @@ module.exports = function(webpackEnv) {
             },
 
 
-            {
-              test: cssRegex,
-              use: [
-                  'style-loader',
-                  'css-loader',
-              ],
-          },
-          {
-              test: lessRegex,
-              use: [
-                  'style-loader',
-                  'css-loader',
-                  {
-                    loader: 'less-loader', 
-                  options: {
-                    modifyVars: theme
-                  }
-                },
-              ],
-              include: /node_modules/,
-          },
+            // {
+            //   test: cssRegex,
+            //   use: [
+            //       'style-loader',
+            //       'css-loader',
+            //   ],
+            // },
+            // { 
+            //   test: lessRegex,
+            //   use: [
+            //       'style-loader',
+            //       'css-loader',
+            //       {
+            //         loader: 'less-loader', 
+            //       options: {
+            //         modifyVars: theme
+            //       }
+            //     },
+            //   ],
+            //   include: /node_modules/,
+            // },
 
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
@@ -583,7 +602,11 @@ module.exports = function(webpackEnv) {
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
-      new webpack.DefinePlugin(env.stringified),
+      new webpack.DefinePlugin({
+        ...env.stringified,
+        '__VERSION__': JSON.stringify(require(path.resolve(__dirname, '../package.json')).version),
+        '__DEV__': !isEnvProduction, // 临时写死
+      }),
       // This is necessary to emit hot updates (currently CSS only):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use

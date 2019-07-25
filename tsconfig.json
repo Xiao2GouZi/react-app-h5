@@ -17,9 +17,33 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "outDir": "build",
+    "paths": {
+      "@kits": [
+        "./kits"
+      ],
+      "@config": [
+        "./config"
+      ],
+      "@assets": [
+        "./assets"
+      ],
+      "@components": [
+        "./components"
+      ],
+      "@commons": [
+        "./commons"
+      ]
+    }
   },
   "include": [
     "src"
   ]
 }
+
+
+
+
