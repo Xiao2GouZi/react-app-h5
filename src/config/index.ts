@@ -2,8 +2,8 @@
 
 
 const config = {
-    isDev: true
-
+    isDev: true,
+    requestTimeOut: 20
 }
 
 

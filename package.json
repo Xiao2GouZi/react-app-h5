@@ -9,9 +9,6 @@
     "@svgr/webpack": "4.1.0",
     "@types/jest": "24.0.15",
     "@types/node": "12.6.8",
-    "@types/react": "16.8.23",
-    "@types/react-dom": "16.8.5",
-    "@types/react-router": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
     "antd-mobile": "^2.2.14",
@@ -87,7 +84,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "iconfont": "nodemon iconfont/index.js",
+    "mock": "nodemon mock/index.js",
+    "iconfont-map": " cd src/assets/iconfont && bash iconfont_mapper.sh iconfont.svg"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -164,9 +164,14 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
     "@types/react-redux": "^7.1.1",
+    "@types/react-router": "^5.0.3",
     "@types/react-router-redux": "^5.0.18",
     "@types/redux-actions": "^2.6.1",
-    "@types/redux-logger": "^3.0.7"
+    "@types/redux-logger": "^3.0.7",
+    "mockjs": "^1.0.1-beta3",
+    "nodemon": "^1.19.1"
   }
 }
