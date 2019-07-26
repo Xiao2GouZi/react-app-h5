@@ -2,12 +2,19 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
+
 declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly PUBLIC_URL: string;
   }
 }
+
+
+declare var __DEV__: number;
+declare var __VERSION__: string;
+
+
 
 declare module '*.bmp' {
   const src: string;
@@ -62,3 +69,4 @@ declare module '*.module.sass' {
   const classes: { [key: string]: string };
   export default classes;
 }
+

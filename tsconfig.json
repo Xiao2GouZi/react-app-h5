@@ -36,6 +36,9 @@
       ],
       "@commons": [
         "./commons"
+      ],
+      "@ry-redux": [
+        "./ry-redux"
       ]
     }
   },

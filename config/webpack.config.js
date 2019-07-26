@@ -298,6 +298,8 @@ module.exports = function(webpackEnv) {
         '@assets': path.resolve(__dirname, '../src/assets'),
         '@components': path.resolve(__dirname, '../src/components'),
         '@commons': path.resolve(__dirname, '../src/commons'),
+        '@ry-redux': path.resolve(__dirname, '../src/ry-redux'),
+
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

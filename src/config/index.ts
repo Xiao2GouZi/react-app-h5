@@ -1,7 +1,17 @@
 
 
 
-export const name = '123123'
+const config = {
+    isDev: true
+
+}
+
+
+
+export default config
+
+
+
 
 
 
