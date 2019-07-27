@@ -116,7 +116,7 @@ module.exports = function(webpackEnv) {
             //   // mediaQuery: false,
             // }),
             
-            px2rem({remUnit:32,exclude: /node_modules/i}),
+            px2rem({remUnit:75,exclude: /node_modules/i}),
 
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
