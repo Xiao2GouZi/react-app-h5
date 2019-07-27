@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import { Store } from '@ry-redux'
 import App from './app/home'
 import Home2 from './app/home2'  
-import './index.css';
+import './index.less';
 import "lib-flexible"
 
 

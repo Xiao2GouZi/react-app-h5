@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
 
-    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <!-- <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /> -->
 
 <!-- set `maximum-scale` for some compatibility issues -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /> -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
 <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
 <script>
   if ('addEventListener' in document) {
@@ -24,7 +27,7 @@
 
 <!-- <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(normal,e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=normal?1:1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=normal?"50px": a/2*s*n+"px"},e.exports=t["default"]}]); flex(false,100, 1);</script> -->
 
-<script>
+<!-- <script>
   !(function(win, doc) {
       function setFontSize() {
           var baseFontSize = 100;
@@ -55,7 +58,7 @@
       }, false);
       setFontSize();
   }(window, document));
-</script>
+</script> -->
 
 
 <!-- <script>
@@ -93,6 +96,80 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <!-- <script>
+     !function (window) {
+      /* 设计图文档宽度 */
+      var docWidth = 750;
+      var doc = window.document,
+          docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      var recalc = (function refreshRem () {
+          var clientWidth = docEl.getBoundingClientRect().width;
+          /* 8.55：小于320px不再缩小，11.2：大于420px不再放大 */
+          docEl.style.fontSize = Math.max(Math.min(20 * (clientWidth / docWidth), 11.2), 8.55) * 5 + 'px';
+          return refreshRem;
+      })();
+      /* 添加倍屏标识，安卓为1 */
+      docEl.setAttribute('data-dpr', window.navigator.appVersion.match(/iphone/gi) ? window.devicePixelRatio : 1);
+      if (/iP(hone|od|ad)/.test(window.navigator.userAgent)) {
+          /* 添加IOS标识 */
+          doc.documentElement.classList.add('ios');
+          if (parseInt(window.navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/)[1], 10) >= 8)
+              doc.documentElement.classList.add('hairline');
+      }
+      if (!doc.addEventListener) return;
+      window.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+  }(window);
+    </script> -->
+
+
+    <!-- <script>
+      (function (doc, win) {
+          var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+          };
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+  </script> -->
+
+
+
+<!-- <script>
+  window.onload = function() {
+  // 同时按下两个手指
+  document.addEventListener('touchstart', function(event) {
+      if(event.touches.length > 1) {
+          event.preventDefault()
+      }
+  })
+  var lastTouchEnd = 0;
+  // 特别注意300ms时差的设置
+  document.addEventListener('touchend', function(event) {
+      var now = (new Date()).getTime();
+      if(now-lastTouchEnd <= 300) {
+          event.preventDefault();
+      }
+      lastTouchEnd = now;
+  })
+}
+</script> -->
+
+
+
+
+
+
+   
+
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

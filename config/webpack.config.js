@@ -108,10 +108,15 @@ module.exports = function(webpackEnv) {
             // require('postcss-pxtorem')({
             //   rootValue: 100,
             //   propWhiteList: [],
-            //   minPixelValue:2,
+            //   minPixelValue:5,
+            //   // unitPrecision: 5,
+            //   // propWhiteList: [],
+            //   // selectorBlackList: [],
+            //   // replace: true,
+            //   // mediaQuery: false,
             // }),
             
-            px2rem({remUnit:75,exclude: /node_modules/i}),
+            px2rem({remUnit:32,exclude: /node_modules/i}),
 
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
